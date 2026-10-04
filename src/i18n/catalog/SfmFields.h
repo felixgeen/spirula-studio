@@ -668,6 +668,57 @@ SS_MSG(image_linear_help,
        "закодированными"),
     TR("Girdi görüntülerini ekran kodlu değil, doğrusal ışık olarak ele al"));
 
+SS_MSG(image_exposure_help,
+    EN("Brighten what the detectors see, in linear light, without touching the "
+       "files: auto lifts each image whose median is darker than a typical "
+       "photograph's, or give a number of stops (2, -1). Point colours and the "
+       "training images keep the files' own values"),
+    JA("ファイルを変えずに、検出器に渡す画像だけをリニア光で明るくする。auto は"
+       "中央値が一般的な写真より暗い画像をそれぞれ持ち上げ、数値なら段数（2、-1）。"
+       "点群の色と学習用画像はファイル本来の値のまま"),
+    ZH_HANS("在线性光中只调亮检测器看到的图像，不改动文件：auto 会把中位亮度低于"
+            "普通照片的每张图像提亮，也可给出档数（2、-1）。点云颜色和训练图像保持"
+            "文件原值"),
+    ZH_HANT("在線性光中只調亮偵測器看到的影像，不改動檔案：auto 會把中位亮度低於"
+            "一般照片的每張影像提亮，也可給出檔數（2、-1）。點雲顏色與訓練影像維持"
+            "檔案原值"),
+    KO("파일은 그대로 두고 검출기가 보는 이미지만 선형 광에서 밝게 합니다. auto 는 "
+       "중앙값이 일반 사진보다 어두운 이미지를 각각 끌어올리고, 숫자는 스톱 "
+       "수입니다(2, -1). 점 구름 색과 학습 이미지는 파일 본래 값을 유지합니다"),
+    DE("Hellt in linearem Licht auf, was die Detektoren sehen, ohne die Dateien "
+       "zu ändern: auto hebt jedes Bild an, dessen Median dunkler ist als bei "
+       "einem typischen Foto, oder eine Zahl von Blendenstufen (2, -1). "
+       "Punktfarben und Trainingsbilder behalten die Werte der Dateien"),
+    FR("Éclaircit en lumière linéaire ce que voient les détecteurs, sans toucher "
+       "aux fichiers : auto relève chaque image dont la médiane est plus sombre "
+       "que celle d'une photo typique, ou indiquez un nombre de diaphs (2, -1). "
+       "Les couleurs des points et les images d'entraînement gardent les valeurs "
+       "des fichiers"),
+    ES("Aclara en luz lineal lo que ven los detectores, sin tocar los archivos: "
+       "auto levanta cada imagen cuya mediana es más oscura que la de una foto "
+       "típica, o indique un número de pasos (2, -1). Los colores de los puntos y "
+       "las imágenes de entrenamiento conservan los valores de los archivos"),
+    PT("Clareia em luz linear o que os detectores veem, sem mexer nos arquivos: "
+       "auto ergue cada imagem cuja mediana é mais escura que a de uma foto "
+       "típica, ou indique um número de pontos (2, -1). As cores dos pontos e as "
+       "imagens de treino mantêm os valores dos arquivos"),
+    IT("Schiarisce in luce lineare ciò che vedono i rilevatori, senza toccare i "
+       "file: auto solleva ogni immagine la cui mediana è più scura di quella di "
+       "una foto tipica, oppure indica un numero di stop (2, -1). I colori dei "
+       "punti e le immagini di addestramento mantengono i valori dei file"),
+    NL("Maakt in lineair licht lichter wat de detectoren zien, zonder de "
+       "bestanden te wijzigen: auto tilt elk beeld op waarvan de mediaan donkerder "
+       "is dan bij een gewone foto, of geef een aantal stops (2, -1). Puntkleuren "
+       "en trainingsbeelden houden de waarden van de bestanden"),
+    RU("Осветляет в линейном свете то, что видят детекторы, не трогая файлы: auto "
+       "поднимает каждое изображение, медиана которого темнее, чем у обычной "
+       "фотографии, либо укажите число ступеней (2, -1). Цвета точек и обучающие "
+       "изображения сохраняют значения файлов"),
+    TR("Algılayıcıların gördüğünü dosyalara dokunmadan doğrusal ışıkta aydınlatır: "
+       "auto, medyanı tipik bir fotoğrafınkinden koyu olan her görüntüyü "
+       "yükseltir; ya da bir durak sayısı verin (2, -1). Nokta renkleri ve eğitim "
+       "görüntüleri dosyaların kendi değerlerini korur"));
+
 SS_MSG(point_color_help,
     EN("Colour space the sparse point cloud is written in. image writes the "
        "points in the same space as the photographs, which the trainer assumes "
@@ -3505,6 +3556,54 @@ SS_MSG(auto_resume_help,
        "вывода от прерванного запуска с теми же настройками"),
     TR("Aynı ayarlarla yarıda kalan bir çalıştırmanın çıktı klasöründe bıraktığı "
        "öznitelikleri, çift listesini ve doğrulanmış çiftleri devral"));
+
+SS_MSG(poses_help,
+    EN("A COLMAP model (cameras.bin, images.bin) to keep exactly as it is: features "
+       "are matched as usual, then points are only triangulated for its poses. "
+       "Nothing is bundle-adjusted, levelled or rescaled, and the written cameras "
+       "and poses are checked byte for byte against it"),
+    JA("そのまま保持する COLMAP モデル（cameras.bin、images.bin）。特徴点は通常どおり"
+       "対応付け、その姿勢だけを使って点を三角測量します。バンドル調整・水平化・"
+       "スケール変更は行わず、書き出したカメラと姿勢が入力とバイト単位で一致することを確認します"),
+    ZH_HANS("原样保留的 COLMAP 模型（cameras.bin、images.bin）：特征照常匹配，然后只依据"
+            "其位姿三角化出点。不做平差、不调平、不缩放，并逐字节核对写出的相机和位姿与输入一致"),
+    ZH_HANT("原樣保留的 COLMAP 模型（cameras.bin、images.bin）：特徵照常匹配，然後只依據"
+            "其位姿三角化出點。不做平差、不調平、不縮放，並逐位元組核對寫出的相機和位姿與輸入一致"),
+    KO("그대로 유지할 COLMAP 모델(cameras.bin, images.bin): 특징점은 평소처럼 매칭하고, "
+       "그 자세만으로 점을 삼각측량합니다. 번들 조정, 수평 맞춤, 스케일 변경은 하지 않으며, "
+       "기록한 카메라와 자세가 입력과 바이트 단위로 같은지 확인합니다"),
+    DE("Ein COLMAP-Modell (cameras.bin, images.bin), das unverändert bleibt: Merkmale "
+       "werden wie üblich zugeordnet, dann werden nur für seine Posen Punkte "
+       "trianguliert. Kein Bündelausgleich, kein Ausrichten oder Skalieren; die "
+       "geschriebenen Kameras und Posen werden Byte für Byte mit ihm verglichen"),
+    FR("Un modèle COLMAP (cameras.bin, images.bin) à garder tel quel : les points "
+       "d'intérêt sont appariés comme d'habitude, puis des points sont seulement "
+       "triangulés pour ses poses. Ni ajustement, ni mise à niveau, ni changement "
+       "d'échelle ; les caméras et poses écrites sont comparées octet par octet au modèle"),
+    ES("Un modelo COLMAP (cameras.bin, images.bin) que se conserva tal cual: los rasgos "
+       "se emparejan como siempre y luego solo se triangulan puntos para sus poses. "
+       "Sin ajuste, nivelado ni cambio de escala; las cámaras y poses escritas se "
+       "comparan byte a byte con él"),
+    PT("Um modelo COLMAP (cameras.bin, images.bin) mantido tal como está: as "
+       "correspondências são feitas como de costume e depois só se triangulam pontos "
+       "para as suas poses. Sem ajuste, nivelamento ou mudança de escala; as câmeras e "
+       "poses escritas são comparadas byte a byte com ele"),
+    IT("Un modello COLMAP (cameras.bin, images.bin) da mantenere così com'è: le "
+       "corrispondenze si cercano come al solito, poi si triangolano punti solo per le "
+       "sue pose. Niente bundle adjustment, livellamento o cambio di scala; fotocamere "
+       "e pose scritte vengono confrontate byte per byte con il modello"),
+    NL("Een COLMAP-model (cameras.bin, images.bin) dat ongewijzigd blijft: kenmerken "
+       "worden zoals gewoonlijk gekoppeld, daarna worden alleen punten getrianguleerd "
+       "voor zijn poses. Geen bundelaanpassing, nivellering of schaalwijziging; de "
+       "geschreven camera's en poses worden byte voor byte met het model vergeleken"),
+    RU("Модель COLMAP (cameras.bin, images.bin), которая сохраняется как есть: признаки "
+       "сопоставляются как обычно, затем по её позам только триангулируются точки. "
+       "Без уравнивания, выравнивания и смены масштаба; записанные камеры и позы "
+       "побайтно сверяются с моделью"),
+    TR("Olduğu gibi korunacak bir COLMAP modeli (cameras.bin, images.bin): öznitelikler "
+       "her zamanki gibi eşleştirilir, ardından yalnızca onun pozları için noktalar "
+       "üçgenlenir. Demet dengelemesi, düzleme ya da ölçek değişikliği yapılmaz; yazılan "
+       "kameralar ve pozlar modelle bayt bayt karşılaştırılır"));
 
 SS_MSG(check_help,
     EN("With --resume: report how far each model agrees with the two-view "

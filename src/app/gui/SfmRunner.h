@@ -99,6 +99,11 @@ inline const char* sfm_matcher_for(int features, int matcher) {
     return f.rfind("loma", 0) == 0 ? sfm_pick(kSfmFeatures, features) : "lightglue";
 }
 
+// For another launcher of `spirula sfm auto`: which of the child's lines the
+// default log view shows, and removing what a finished run no longer needs.
+bool sfm_child_line_is_notable(const std::string& l);
+void sfm_sweep_intermediates(const std::string& ws);
+
 // SS_SFM_SUBPROCESS=1 starts a session with the escape hatch below on.
 inline bool sfm_subprocess_default() {
     const char* v = spirula::env("SFM_SUBPROCESS");
@@ -195,6 +200,9 @@ struct SfmJob {
     // what those detectors and models were trained on. Empty = Rec.709/sRGB.
     std::string image_gamut;
     std::optional<bool> image_is_linear;
+    // What the detectors and models see, brightened in linear light: "", "auto"
+    // or stops (core/ColorSpace.h). Training reads the files as they are.
+    std::string image_exposure;
     // false: the sparse point cloud stays sRGB (train with point-color-gamut
     // Rec.709). true: written in the images' space, the trainer's default.
     bool point_color_in_image_space = false;

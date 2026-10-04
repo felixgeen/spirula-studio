@@ -271,59 +271,75 @@ SS_MSG(lens_skip_images,
     RU("в его папке нет читаемых кадров"),
     TR("klasöründe okunabilen kare yok"));
 
-// The images are EXRs and the transfer was left to them; {0} is the gamut in
-// force. Everything here converts to sRGB before it looks at a pixel.
-SS_MSG(run_exr_color,
-    EN("EXR input read as linear {0}"),
-    JA("EXR 入力を線形 {0} として読み込みます"),
-    ZH_HANS("EXR 输入按线性 {0} 读取"),
-    ZH_HANT("EXR 輸入依線性 {0} 讀取"),
-    KO("EXR 입력을 선형 {0}(으)로 읽습니다"),
-    DE("EXR-Eingabe wird als lineares {0} gelesen"),
-    FR("Entrée EXR lue comme {0} linéaire"),
-    ES("Entrada EXR leída como {0} lineal"),
-    PT("Entrada EXR lida como {0} linear"),
-    IT("Ingresso EXR letto come {0} lineare"),
-    NL("EXR-invoer gelezen als lineair {0}"),
-    RU("Вход EXR читается как линейный {0}"),
-    TR("EXR girdisi doğrusal {0} olarak okunuyor"));
+// The images declare their colour space -- an EXR's header, a TIFF's ICC
+// profile -- and the transfer was left to them. {0} is the format ("EXR",
+// "TIFF"), {1} the gamut in force.
+SS_MSG(run_file_color_linear,
+    EN("{0} input read as linear {1}"),
+    JA("{0} 入力を線形 {1} として読み込みます"),
+    ZH_HANS("{0} 输入按线性 {1} 读取"),
+    ZH_HANT("{0} 輸入依線性 {1} 讀取"),
+    KO("{0} 입력을 선형 {1}(으)로 읽습니다"),
+    DE("{0}-Eingabe wird als lineares {1} gelesen"),
+    FR("Entrée {0} lue comme {1} linéaire"),
+    ES("Entrada {0} leída como {1} lineal"),
+    PT("Entrada {0} lida como {1} linear"),
+    IT("Ingresso {0} letto come {1} lineare"),
+    NL("{0}-invoer gelezen als lineair {1}"),
+    RU("Вход {0} читается как линейный {1}"),
+    TR("{0} girdisi doğrusal {1} olarak okunuyor"));
 
-SS_MSG(run_exr_gamut_from_file,
-    EN("EXR colour space: {0}, from the file"),
-    JA("EXR の色空間: {0}（ファイルの情報）"),
-    ZH_HANS("EXR 色彩空间: {0}（取自文件）"),
-    ZH_HANT("EXR 色彩空間: {0}（取自檔案）"),
-    KO("EXR 색 공간: {0}(파일에서 읽음)"),
-    DE("EXR-Farbraum: {0}, aus der Datei"),
-    FR("Espace colorimétrique EXR : {0}, d'après le fichier"),
-    ES("Espacio de color EXR: {0}, según el archivo"),
-    PT("Espaço de cor EXR: {0}, conforme o arquivo"),
-    IT("Spazio colore EXR: {0}, dal file"),
-    NL("EXR-kleurruimte: {0}, uit het bestand"),
-    RU("Цветовое пространство EXR: {0}, из файла"),
-    TR("EXR renk uzayı: {0}, dosyadan"));
+SS_MSG(run_file_color_display,
+    EN("{0} input read as display-encoded {1}"),
+    JA("{0} 入力を表示用エンコードの {1} として読み込みます"),
+    ZH_HANS("{0} 输入按显示编码的 {1} 读取"),
+    ZH_HANT("{0} 輸入依顯示編碼的 {1} 讀取"),
+    KO("{0} 입력을 디스플레이 인코딩된 {1}(으)로 읽습니다"),
+    DE("{0}-Eingabe wird als anzeigecodiertes {1} gelesen"),
+    FR("Entrée {0} lue comme {1} encodé pour l'affichage"),
+    ES("Entrada {0} leída como {1} codificado para pantalla"),
+    PT("Entrada {0} lida como {1} codificado para exibição"),
+    IT("Ingresso {0} letto come {1} codificato per lo schermo"),
+    NL("{0}-invoer gelezen als weergavegecodeerd {1}"),
+    RU("Вход {0} читается как экранно закодированный {1}"),
+    TR("{0} girdisi ekran kodlu {1} olarak okunuyor"));
 
-SS_MSG(run_exr_gamut_unknown,
-    EN("The EXR's color primaries match no known color space; reading it as Rec.709"),
-    JA("EXR の原色はどの既知の色空間とも一致しません。Rec.709 として読み込みます"),
-    ZH_HANS("EXR 的色彩基色不属于任何已知色彩空间，按 Rec.709 读取"),
-    ZH_HANT("EXR 的色彩基色不屬於任何已知色彩空間，依 Rec.709 讀取"),
-    KO("EXR의 원색이 알려진 색 공간과 일치하지 않습니다. Rec.709로 읽습니다"),
-    DE("Die Primärfarben der EXR passen zu keinem bekannten Farbraum; "
+SS_MSG(run_file_gamut_from_file,
+    EN("{0} colour space: {1}, from the file"),
+    JA("{0} の色空間: {1}（ファイルの情報）"),
+    ZH_HANS("{0} 色彩空间: {1}（取自文件）"),
+    ZH_HANT("{0} 色彩空間: {1}（取自檔案）"),
+    KO("{0} 색 공간: {1}(파일에서 읽음)"),
+    DE("{0}-Farbraum: {1}, aus der Datei"),
+    FR("Espace colorimétrique {0} : {1}, d'après le fichier"),
+    ES("Espacio de color {0}: {1}, según el archivo"),
+    PT("Espaço de cor {0}: {1}, conforme o arquivo"),
+    IT("Spazio colore {0}: {1}, dal file"),
+    NL("{0}-kleurruimte: {1}, uit het bestand"),
+    RU("Цветовое пространство {0}: {1}, из файла"),
+    TR("{0} renk uzayı: {1}, dosyadan"));
+
+SS_MSG(run_file_gamut_unknown,
+    EN("The {0} input's color primaries match no known color space; reading it as Rec.709"),
+    JA("{0} 入力の原色はどの既知の色空間とも一致しません。Rec.709 として読み込みます"),
+    ZH_HANS("{0} 输入的色彩基色不属于任何已知色彩空间，按 Rec.709 读取"),
+    ZH_HANT("{0} 輸入的色彩基色不屬於任何已知色彩空間，依 Rec.709 讀取"),
+    KO("{0} 입력의 원색이 알려진 색 공간과 일치하지 않습니다. Rec.709로 읽습니다"),
+    DE("Die Primärfarben der {0}-Eingabe passen zu keinem bekannten Farbraum; "
        "sie wird als Rec.709 gelesen"),
-    FR("Les primaires de l'EXR ne correspondent à aucun espace connu ; "
+    FR("Les primaires de l'entrée {0} ne correspondent à aucun espace connu ; "
        "lecture en Rec.709"),
-    ES("Los primarios del EXR no coinciden con ningún espacio conocido; "
+    ES("Los primarios de la entrada {0} no coinciden con ningún espacio conocido; "
        "se lee como Rec.709"),
-    PT("Os primários do EXR não correspondem a nenhum espaço conhecido; "
-       "lido como Rec.709"),
-    IT("I primari dell'EXR non corrispondono ad alcuno spazio noto; "
+    PT("Os primários da entrada {0} não correspondem a nenhum espaço conhecido; "
+       "lida como Rec.709"),
+    IT("I primari dell'ingresso {0} non corrispondono ad alcuno spazio noto; "
        "viene letto come Rec.709"),
-    NL("De primaire kleuren van de EXR passen bij geen bekende kleurruimte; "
-       "hij wordt als Rec.709 gelezen"),
-    RU("Основные цвета EXR не совпадают ни с одним известным пространством; "
-       "файл читается как Rec.709"),
-    TR("EXR'nin ana renkleri bilinen hiçbir renk uzayıyla eşleşmiyor; "
+    NL("De primaire kleuren van de {0}-invoer passen bij geen bekende kleurruimte; "
+       "die wordt als Rec.709 gelezen"),
+    RU("Основные цвета входа {0} не совпадают ни с одним известным пространством; "
+       "вход читается как Rec.709"),
+    TR("{0} girdisinin ana renkleri bilinen hiçbir renk uzayıyla eşleşmiyor; "
        "Rec.709 olarak okunuyor"));
 
 SS_MSG(run_masks,
@@ -754,6 +770,78 @@ SS_MSG(extract_mask_empty,
        "игнорируют чёрные, поэтому инвертированная маска убирает всё изображение."),
     TR("{0} maskesi {1} içinde tek bir anahtar nokta bırakmadı. Maskeler beyaz pikselleri "
        "tutar, siyahları yok sayar; ters çevrilmiş bir maske tüm görüntüyü eler."));
+
+// --image-exposure: what the detectors were shown, in signed EV. {0} and {1}
+// are the least and the most any one image was given.
+SS_MSG(extract_exposure_auto,
+    EN("Exposure for the detectors: auto, {0} to {1} EV"),
+    JA("検出器向けの露出: 自動、{0} ～ {1} EV"),
+    ZH_HANS("检测器所用曝光：自动，{0} 至 {1} EV"),
+    ZH_HANT("偵測器所用曝光：自動，{0} 至 {1} EV"),
+    KO("검출기용 노출: 자동, {0} ~ {1} EV"),
+    DE("Belichtung für die Detektoren: automatisch, {0} bis {1} EV"),
+    FR("Exposition pour les détecteurs : auto, de {0} à {1} EV"),
+    ES("Exposición para los detectores: auto, de {0} a {1} EV"),
+    PT("Exposição para os detectores: auto, de {0} a {1} EV"),
+    IT("Esposizione per i rilevatori: auto, da {0} a {1} EV"),
+    NL("Belichting voor de detectoren: automatisch, {0} tot {1} EV"),
+    RU("Экспозиция для детекторов: авто, от {0} до {1} EV"),
+    TR("Algılayıcılar için pozlama: otomatik, {0} ile {1} EV arası"));
+
+SS_MSG(extract_exposure_fixed,
+    EN("Exposure for the detectors: {0} EV"),
+    JA("検出器向けの露出: {0} EV"),
+    ZH_HANS("检测器所用曝光：{0} EV"),
+    ZH_HANT("偵測器所用曝光：{0} EV"),
+    KO("검출기용 노출: {0} EV"),
+    DE("Belichtung für die Detektoren: {0} EV"),
+    FR("Exposition pour les détecteurs : {0} EV"),
+    ES("Exposición para los detectores: {0} EV"),
+    PT("Exposição para os detectores: {0} EV"),
+    IT("Esposizione per i rilevatori: {0} EV"),
+    NL("Belichting voor de detectoren: {0} EV"),
+    RU("Экспозиция для детекторов: {0} EV"),
+    TR("Algılayıcılar için pozlama: {0} EV"));
+
+// Read as linear, and the largest value across all of them is exactly 1.0 --
+// what display-encoded pixels labelled linear look like.
+SS_MSG(extract_linear_peak_one,
+    EN("Images read as linear light normally go past 1.0, and none of these does: "
+       "either they are display-encoded (--no-image-linear), or their highlights "
+       "were clipped at white"),
+    JA("リニア光として読み込む画像は通常 1.0 を超えますが、これらはどれも超えていません。"
+       "表示用エンコードの画像（--no-image-linear）か、ハイライトが白でクリップされています"),
+    ZH_HANS("按线性光读取的图像通常会超过 1.0，而这些图像都没有：要么是显示编码的"
+            "（--no-image-linear），要么高光已在白点处被截断"),
+    ZH_HANT("依線性光讀取的影像通常會超過 1.0，而這些影像都沒有：要麼是顯示編碼的"
+            "（--no-image-linear），要麼高光已在白點處被截斷"),
+    KO("선형 광으로 읽는 이미지는 보통 1.0을 넘지만 이 이미지들은 하나도 넘지 않습니다. "
+       "디스플레이 인코딩된 이미지이거나(--no-image-linear) 하이라이트가 흰색에서 "
+       "잘렸습니다"),
+    DE("Als lineares Licht gelesene Bilder gehen meist über 1.0 hinaus, diese aber "
+       "nicht: Entweder sind sie anzeigecodiert (--no-image-linear), oder ihre "
+       "Lichter wurden bei Weiß abgeschnitten"),
+    FR("Des images lues en lumière linéaire dépassent normalement 1.0, et aucune "
+       "de celles-ci : soit elles sont encodées pour l'affichage "
+       "(--no-image-linear), soit leurs hautes lumières ont été écrêtées au blanc"),
+    ES("Las imágenes leídas como luz lineal suelen pasar de 1.0, y ninguna de estas "
+       "lo hace: o están codificadas para pantalla (--no-image-linear), o sus luces "
+       "se recortaron en el blanco"),
+    PT("Imagens lidas como luz linear costumam passar de 1.0, e nenhuma destas "
+       "passa: ou estão codificadas para exibição (--no-image-linear), ou os "
+       "realces foram cortados no branco"),
+    IT("Le immagini lette come luce lineare di solito superano 1.0, e nessuna di "
+       "queste lo fa: o sono codificate per lo schermo (--no-image-linear), o le "
+       "alte luci sono state tagliate al bianco"),
+    NL("Beelden die als lineair licht worden gelezen komen meestal boven 1.0, en "
+       "geen van deze doet dat: ze zijn weergavegecodeerd (--no-image-linear), of "
+       "hun hooglichten zijn bij wit afgekapt"),
+    RU("Изображения, читаемые как линейный свет, обычно выходят за 1.0, а эти — "
+       "нет: либо они экранно закодированы (--no-image-linear), либо их света "
+       "обрезаны на белом"),
+    TR("Doğrusal ışık olarak okunan görüntüler genellikle 1.0'ı aşar; bunların "
+       "hiçbiri aşmıyor: ya ekran kodlular (--no-image-linear) ya da parlak "
+       "alanları beyazda kırpılmış"));
 
 SS_MSG(extract_reusing,
     EN("Features an earlier run already wrote: {0}/{1} images -- keeping them."),
@@ -4146,6 +4234,120 @@ SS_MSG(match_sequence_added,
     NL("reeksvensters voegden paren toe: {0}, bovenop gekozen paren: {1} (vensterparen: {2})"),
     RU("окна последовательностей добавили пар: {0}, к выбранным парам: {1} (пар в окнах: {2})"),
     TR("dizi pencereleri çift ekledi: {0}, seçilmiş çiftlere ek olarak: {1} (pencere çifti: {2})"));
+
+// ===========================================================================
+// Fixed poses (--poses)
+// ===========================================================================
+
+SS_MSG(poses_header,
+    EN("Poses kept from {0}   Images: {1}   Cameras: {2}"),
+    JA("{0} の姿勢をそのまま使用   画像: {1}   カメラ: {2}"),
+    ZH_HANS("沿用 {0} 的位姿   图像: {1}   相机: {2}"),
+    ZH_HANT("沿用 {0} 的位姿   影像: {1}   相機: {2}"),
+    KO("{0} 의 자세를 그대로 사용   이미지: {1}   카메라: {2}"),
+    DE("Posen unverändert aus {0}   Bilder: {1}   Kameras: {2}"),
+    FR("Poses conservées de {0}   Images : {1}   Caméras : {2}"),
+    ES("Poses conservadas de {0}   Imágenes: {1}   Cámaras: {2}"),
+    PT("Poses mantidas de {0}   Imagens: {1}   Câmeras: {2}"),
+    IT("Pose mantenute da {0}   Immagini: {1}   Fotocamere: {2}"),
+    NL("Poses ongewijzigd uit {0}   Afbeeldingen: {1}   Camera's: {2}"),
+    RU("Позы сохраняются из {0}   Изображений: {1}   Камер: {2}"),
+    TR("Pozlar {0} modelinden aynen alındı   Görüntü: {1}   Kamera: {2}"));
+
+SS_MSG(poses_missing,
+    EN("{0} poses images that are not in {1}   Missing: {2}   For example: {3}"),
+    JA("{0} には {1} にない画像の姿勢があります   不足: {2}   例: {3}"),
+    ZH_HANS("{0} 中有位姿的图像不在 {1} 中   缺少: {2}   例如: {3}"),
+    ZH_HANT("{0} 中有位姿的影像不在 {1} 中   缺少: {2}   例如: {3}"),
+    KO("{0} 에 자세가 있는 이미지가 {1} 에 없습니다   없음: {2}   예: {3}"),
+    DE("{0} enthält Posen für Bilder, die in {1} fehlen   Fehlend: {2}   Zum Beispiel: {3}"),
+    FR("{0} contient des poses d'images absentes de {1}   Manquantes : {2}   Par exemple : {3}"),
+    ES("{0} tiene poses de imágenes que no están en {1}   Faltan: {2}   Por ejemplo: {3}"),
+    PT("{0} tem poses de imagens que não estão em {1}   Em falta: {2}   Por exemplo: {3}"),
+    IT("{0} contiene pose di immagini assenti in {1}   Mancanti: {2}   Per esempio: {3}"),
+    NL("{0} bevat poses van afbeeldingen die niet in {1} staan   Ontbrekend: {2}   "
+       "Bijvoorbeeld: {3}"),
+    RU("В {0} есть позы изображений, которых нет в {1}   Отсутствует: {2}   Например: {3}"),
+    TR("{0} içinde {1} klasöründe olmayan görüntülerin pozları var   Eksik: {2}   "
+       "Örneğin: {3}"));
+
+SS_MSG(poses_unposed,
+    EN("Images without a pose in {0} are left out   Images: {1}   For example: {2}"),
+    JA("{0} に姿勢のない画像は除外します   画像: {1}   例: {2}"),
+    ZH_HANS("{0} 中没有位姿的图像将被略过   图像: {1}   例如: {2}"),
+    ZH_HANT("{0} 中沒有位姿的影像將被略過   影像: {1}   例如: {2}"),
+    KO("{0} 에 자세가 없는 이미지는 제외합니다   이미지: {1}   예: {2}"),
+    DE("Bilder ohne Pose in {0} bleiben außen vor   Bilder: {1}   Zum Beispiel: {2}"),
+    FR("Les images sans pose dans {0} sont laissées de côté   Images : {1}   "
+       "Par exemple : {2}"),
+    ES("Las imágenes sin pose en {0} se dejan fuera   Imágenes: {1}   Por ejemplo: {2}"),
+    PT("As imagens sem pose em {0} ficam de fora   Imagens: {1}   Por exemplo: {2}"),
+    IT("Le immagini senza posa in {0} vengono escluse   Immagini: {1}   Per esempio: {2}"),
+    NL("Afbeeldingen zonder pose in {0} worden overgeslagen   Afbeeldingen: {1}   "
+       "Bijvoorbeeld: {2}"),
+    RU("Изображения без позы в {0} пропускаются   Изображений: {1}   Например: {2}"),
+    TR("{0} içinde pozu olmayan görüntüler dışarıda bırakılır   Görüntü: {1}   "
+       "Örneğin: {2}"));
+
+SS_MSG(poses_size,
+    EN("{0} is {1}x{2} pixels, but its camera in {3} is {4}x{5}"),
+    JA("{0} は {1}x{2} ピクセルですが、{3} のカメラは {4}x{5} です"),
+    ZH_HANS("{0} 为 {1}x{2} 像素，但它在 {3} 中的相机为 {4}x{5}"),
+    ZH_HANT("{0} 為 {1}x{2} 像素，但它在 {3} 中的相機為 {4}x{5}"),
+    KO("{0} 은(는) {1}x{2} 픽셀이지만 {3} 의 카메라는 {4}x{5} 입니다"),
+    DE("{0} hat {1}x{2} Pixel, seine Kamera in {3} aber {4}x{5}"),
+    FR("{0} fait {1}x{2} pixels, mais sa caméra dans {3} fait {4}x{5}"),
+    ES("{0} mide {1}x{2} píxeles, pero su cámara en {3} mide {4}x{5}"),
+    PT("{0} tem {1}x{2} pixels, mas a sua câmera em {3} tem {4}x{5}"),
+    IT("{0} è di {1}x{2} pixel, ma la sua fotocamera in {3} è di {4}x{5}"),
+    NL("{0} is {1}x{2} pixels, maar zijn camera in {3} is {4}x{5}"),
+    RU("{0} имеет размер {1}x{2} пикселей, а его камера в {3} — {4}x{5}"),
+    TR("{0} {1}x{2} piksel, ama {3} içindeki kamerası {4}x{5}"));
+
+SS_MSG(poses_triangulated,
+    EN("Triangulated for the fixed poses: {0}   Points: {1}   Observations: {2}"),
+    JA("固定した姿勢で三角測量: {0}   点: {1}   観測: {2}"),
+    ZH_HANS("按固定位姿三角化: {0}   点: {1}   观测: {2}"),
+    ZH_HANT("按固定位姿三角化: {0}   點: {1}   觀測: {2}"),
+    KO("고정된 자세로 삼각측량: {0}   점: {1}   관측: {2}"),
+    DE("Für die festen Posen trianguliert: {0}   Punkte: {1}   Beobachtungen: {2}"),
+    FR("Triangulé pour les poses fixes : {0}   Points : {1}   Observations : {2}"),
+    ES("Triangulado para las poses fijas: {0}   Puntos: {1}   Observaciones: {2}"),
+    PT("Triangulado para as poses fixas: {0}   Pontos: {1}   Observações: {2}"),
+    IT("Triangolato per le pose fisse: {0}   Punti: {1}   Osservazioni: {2}"),
+    NL("Getrianguleerd voor de vaste poses: {0}   Punten: {1}   Waarnemingen: {2}"),
+    RU("Триангуляция по фиксированным позам: {0}   Точек: {1}   Наблюдений: {2}"),
+    TR("Sabit pozlar için üçgenlendi: {0}   Nokta: {1}   Gözlem: {2}"));
+
+SS_MSG(poses_verified,
+    EN("Cameras and poses written byte for byte as in {0}   Images: {1}"),
+    JA("カメラと姿勢を {0} とバイト単位で同一に書き出しました   画像: {1}"),
+    ZH_HANS("相机和位姿已按 {0} 逐字节原样写出   图像: {1}"),
+    ZH_HANT("相機和位姿已按 {0} 逐位元組原樣寫出   影像: {1}"),
+    KO("카메라와 자세를 {0} 와 바이트 단위로 같게 기록했습니다   이미지: {1}"),
+    DE("Kameras und Posen Byte für Byte wie in {0} geschrieben   Bilder: {1}"),
+    FR("Caméras et poses écrites octet par octet comme dans {0}   Images : {1}"),
+    ES("Cámaras y poses escritas byte a byte como en {0}   Imágenes: {1}"),
+    PT("Câmeras e poses escritas byte a byte como em {0}   Imagens: {1}"),
+    IT("Fotocamere e pose scritte byte per byte come in {0}   Immagini: {1}"),
+    NL("Camera's en poses byte voor byte geschreven zoals in {0}   Afbeeldingen: {1}"),
+    RU("Камеры и позы записаны побайтно как в {0}   Изображений: {1}"),
+    TR("Kameralar ve pozlar {0} ile bayt bayt aynı yazıldı   Görüntü: {1}"));
+
+SS_MSG(poses_changed,
+    EN("The written {0} differs from {1}, so the model was removed"),
+    JA("書き出した {0} が {1} と異なるため、モデルを削除しました"),
+    ZH_HANS("写出的 {0} 与 {1} 不一致，已删除该模型"),
+    ZH_HANT("寫出的 {0} 與 {1} 不一致，已刪除該模型"),
+    KO("기록한 {0} 이(가) {1} 와 달라 모델을 삭제했습니다"),
+    DE("Das geschriebene {0} weicht von {1} ab, daher wurde das Modell entfernt"),
+    FR("Le {0} écrit diffère de {1} ; le modèle a donc été supprimé"),
+    ES("El {0} escrito difiere de {1}, así que se eliminó el modelo"),
+    PT("O {0} escrito difere de {1}, por isso o modelo foi removido"),
+    IT("Il {0} scritto differisce da {1}, quindi il modello è stato rimosso"),
+    NL("Het geschreven {0} wijkt af van {1}, dus het model is verwijderd"),
+    RU("Записанный {0} отличается от {1}, поэтому модель удалена"),
+    TR("Yazılan {0}, {1} modelinden farklı olduğu için model silindi"));
 
 }  // namespace sfm
 }  // namespace msg

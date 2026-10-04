@@ -30,6 +30,7 @@
 #include <type_traits>
 #include <vector>
 
+#include "core/ColorSpace.h"
 #include "sfm/core/CameraSetup.h"
 #include "sfm/core/Sequence.h"
 #include "sfm/feature/Matcher.h"
@@ -127,6 +128,9 @@ struct SfmConfig {
     // is what the detectors and the AI models were trained on.
     std::string image_gamut = "Rec.709";
     bool image_is_linear = false;
+    // "auto" or stops, for what the detectors see; finalize() parses it.
+    std::string image_exposure;
+    colorspace::Exposure exposure;
     // "srgb" leaves point colours there (trainer: point_color_gamut Rec.709);
     // "image" writes them back in the photographs' space, the trainer's default.
     std::string point_color_space = "srgb";
@@ -218,6 +222,10 @@ struct SfmConfig {
     // workspace -- the feature files it wrote, the pair list it chose, the pairs
     // verification finished (sfm/core/Resume.h). Off starts every stage over.
     bool reuse = true;
+
+    // `auto`: a COLMAP model whose cameras and poses come out byte for byte;
+    // the run only adds points (docs/notes/fixed-poses.md).
+    std::string poses;
 
     // Runtime.
     int threads = 0;           // host worker pools; 0 = hardware_concurrency
@@ -354,6 +362,8 @@ struct SfmConfig {
       "Rec.709|ACES2065-1|ACEScg|Rec.2020|AdobeRGB|DCI-P3", image_gamut)                           \
     F(image_is_linear, "image-linear", CMD_AUTO | CMD_EXTRACT, Tier::Advanced, "colour", 0, 0, "", \
       image_linear)                                                                                \
+    F(image_exposure, "image-exposure", CMD_AUTO | CMD_EXTRACT, Tier::Advanced, "colour", 0, 0,    \
+      "", image_exposure)                                                                          \
     F(point_color_space, "point-color", CMD_AUTO | CMD_EXTRACT, Tier::Advanced, "colour", 0, 0,    \
       "srgb|image", point_color)                                                                   \
     /* ---- camera ---- */                                                                         \
@@ -629,6 +639,7 @@ struct SfmConfig {
     F(feature_dir, "features", CMD_MAP, Tier::Advanced, "input", 0, 0, "", feature_dir)            \
     F(resume, "resume", CMD_MAP, Tier::Advanced, "input", 0, 0, "", resume)                        \
     F(reuse, "resume", CMD_AUTO, Tier::Basic, "input", 0, 0, "", auto_resume)                      \
+    F(poses, "poses", CMD_AUTO, Tier::Advanced, "input", 0, 0, "", poses)                          \
     F(check, "check", CMD_MAP, Tier::Advanced, "input", 0, 0, "", check)                           \
     /* ---- runtime ---- */                                                                        \
     F(threads, "threads", CMD_AUTO | CMD_MATCH | CMD_MAP, Tier::Advanced, "runtime", 0, 4096, "",  \
