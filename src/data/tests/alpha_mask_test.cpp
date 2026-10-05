@@ -141,8 +141,8 @@ Fetched fetch(const std::string& image, const std::string& mask, bool alpha,
     return {b.mask_width, b.mask_height, b.mask_buffer, b.rgb_buffer};
 }
 
-void run_cases(const std::string& rgba, const std::string& small,
-               const std::string& large) {
+void run_cases(const std::string& rgba, const std::string& small_image,
+               const std::string& large_image) {
     {
         Fetched m = fetch(rgba, "", true, false);
         bool ok = m.w == W && m.h == H;
@@ -151,7 +151,7 @@ void run_cases(const std::string& rgba, const std::string& small,
         check(ok, "alpha alone, gated at 128");
     }
     for (bool flip : {false, true}) {
-        Fetched m = fetch(rgba, small, true, flip);
+        Fetched m = fetch(rgba, small_image, true, flip);
         bool ok = m.w == W && m.h == H;
         for (int y = 0; y < H && ok; y++)
             for (int x = 0; x < W; x++) {
@@ -162,7 +162,7 @@ void run_cases(const std::string& rgba, const std::string& small,
                        : "smaller mask file AND alpha");
     }
     {
-        Fetched m = fetch(rgba, large, true, false);
+        Fetched m = fetch(rgba, large_image, true, false);
         bool ok = m.w == W * 2 && m.h == H * 2;
         for (int y = 0; y < m.h && ok; y++)
             for (int x = 0; x < m.w; x++)
@@ -170,7 +170,7 @@ void run_cases(const std::string& rgba, const std::string& small,
         check(ok, "larger mask file keeps its size, AND alpha");
     }
     {
-        Fetched m = fetch(rgba, small, false, true);
+        Fetched m = fetch(rgba, small_image, false, true);
         bool ok = m.w == W / 2 && m.h == H / 2;
         for (int y = 0; y < m.h && ok; y++)
             for (int x = 0; x < m.w; x++)
@@ -223,9 +223,9 @@ int main() {
                                       std::vector<uint8_t>((size_t)W * H * 3, 128));
     // Half the image's size, and twice it: the AND happens on whichever grid
     // is finer, so neither loses detail.
-    const std::string small = write_png(dir / "small.png", W / 2, H / 2, 1,
+    const std::string small_image = write_png(dir / "small.png", W / 2, H / 2, 1,
                                         top_mask(W / 2, H / 2, 1));
-    const std::string large = write_png(dir / "large.png", W * 2, H * 2, 1,
+    const std::string large_image = write_png(dir / "large.png", W * 2, H * 2, 1,
                                         top_mask(W * 2, H * 2, 4));
 
     {
@@ -240,9 +240,9 @@ int main() {
     for (CacheMode mode : {CacheMode::CPU, CacheMode::DISK}) {
         g_mode = mode;
         std::printf("-- %s cache\n", mode == CacheMode::CPU ? "cpu" : "disk");
-        run_cases(rgba, small, large);
+        run_cases(rgba, small_image, large_image);
         std::printf("-- %s cache, EXR\n", mode == CacheMode::CPU ? "cpu" : "disk");
-        run_cases(rgba_exr, small, large);
+        run_cases(rgba_exr, small_image, large_image);
     }
 
     fs::remove_all(dir);
